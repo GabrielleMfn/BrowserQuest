@@ -10,17 +10,18 @@ Documentation
 Pour lancer le projet :
 
 /!\ Si vous êtes sur Windows, vous pouvez être amené à rencontrer un problème avec http-server et autre. Veuillez vérifier les permissions suivantes :
-    - Win+S : Tapez PowerShell 
-    - Exécutez Windows PowerShell en tant qu'administrateur
-    - Exécutez la commande Get-ExecutionPolicy
-    - Si ce n'est pas RemoteSigned :
-        - Exécutez Set-ExecutionPolicy RemoteSigned puis o/y
-PS : Si plus tard vous voulez remettre la permission d'avant : 
-    - Exécutez Set-ExecutionPolicy Restricted
+* Win+S : Tapez PowerShell 
+* Exécutez Windows PowerShell en tant qu'administrateur
+* Exécutez la commande Get-ExecutionPolicy
+* Si ce n'est pas RemoteSigned :
+    * Exécutez Set-ExecutionPolicy RemoteSigned puis o/y
 
- • Assurez-vous d'être au bon endroit dans l'arborescence
- • Exécutez la commande npm install
- • Exécutez la commande node server/js/main.js
+PS : Si plus tard vous voulez remettre la permission d'avant : 
+    * Exécutez Set-ExecutionPolicy Restricted
+
+* Assurez-vous d'être au bon endroit dans l'arborescence
+* Exécutez la commande npm install
+* Exécutez la commande node server/js/main.js
 
 L'application est initialisée. Enjoy !
 
