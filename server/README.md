@@ -7,18 +7,16 @@ The game server currently runs on nodejs v0.4.7 (but should run fine on the late
 - log
 - bison
 - websocket
-- websocket-server
+- ws
 - sanitizer
 - memcache (only if you want metrics)
 
-All of them can be installed via `npm install -d` (this will install a local copy of all the dependencies in the node_modules directory)
-
+All of them can be installed via `npm install ` 
 
 Configuration
 -------------
 
-The server settings (number of worlds, number of players per world, etc.) can be configured.
-Copy `config_local.json-dist` to a new `config_local.json` file, then edit it. The server will override default settings with this file.
+The server settings (number of worlds, number of players per world, etc.) can be configured via `config_local.json` file. 
 
 
 Deployment

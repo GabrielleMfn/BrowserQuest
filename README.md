@@ -7,7 +7,22 @@ BrowserQuest is a HTML5/JavaScript multiplayer game experiment.
 Documentation
 -------------
 
-Documentation is located in client and server directories.
+Pour lancer le projet :
+
+/!\ Si vous êtes sur Windows, vous pouvez être amené à rencontrer un problème avec http-server et autre. Veuillez vérifier les permissions suivantes :
+    - Win+S : Tapez PowerShell 
+    - Exécutez Windows PowerShell en tant qu'administrateur
+    - Exécutez la commande Get-ExecutionPolicy
+    - Si ce n'est pas RemoteSigned :
+        - Exécutez Set-ExecutionPolicy RemoteSigned puis o/y
+PS : Si plus tard vous voulez remettre la permission d'avant : 
+    - Exécutez Set-ExecutionPolicy Restricted
+
+ • Assurez-vous d'être au bon endroit dans l'arborescence
+ • Exécutez la commande npm install
+ • Exécutez la commande node server/js/main.js
+
+L'application est initialisée. Enjoy !
 
 
 License
@@ -23,3 +38,10 @@ Created by [Little Workshop](http://www.littleworkshop.fr):
 
 * Franck Lecollinet - [@whatthefranck](http://twitter.com/whatthefranck)
 * Guillaume Lecollinet - [@glecollinet](http://twitter.com/glecollinet)
+
+Projet Mis à jour par : 
+* M'FOUMOUNE Gabrielle, 
+* OUARDI Ahmed-amine, 
+* PILLAH Niali henri guy-harvyn 
+* MABANZA Danali
+

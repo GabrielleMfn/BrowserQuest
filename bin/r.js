@@ -1,5 +1,5 @@
 /**
- * @license r.js 0.26.0 Copyright (c) 2010-2011, The Dojo Foundation All Rights Reserved.
+ * @license r.js 0.26.0 solepyright (c) 2010-2011, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/requirejs for details
  */
@@ -212,7 +212,7 @@ var requirejs, require, define;
                 location: location || pkgObj.name,
                 //Remove leading dot in main, so main paths are normalized,
                 //and remove any trailing .js, since different package
-                //envs have different conventions: some use a module name,
+                //envs have different .ventions: some use a module name,
                 //some use a file name.
                 main: (pkgObj.main || "main")
                       .replace(currDirRegExp, '')

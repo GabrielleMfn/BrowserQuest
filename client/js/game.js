@@ -1,7 +1,7 @@
 
 define(['infomanager', 'bubble', 'renderer', 'map', 'animation', 'sprite', 'tile',
         'warrior', 'gameclient', 'audio', 'updater', 'transition', 'pathfinder',
-        'item', 'mob', 'npc', 'player', 'character', 'chest', 'mobs', 'exceptions', 'config', '../../shared/js/gametypes'],
+        'item', 'mob', 'npc', 'player', 'character', 'chest', 'mobs', 'exceptions', 'config', '../shared/js/gametypes'],
 function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedTile,
          Warrior, GameClient, AudioManager, Updater, Transition, Pathfinder,
          Item, Mob, Npc, Player, Character, Chest, Mobs, Exceptions, config) {
@@ -713,12 +713,15 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         connect: function(started_callback) {
             var self = this,
                 connecting = false; // always in dispatcher mode in the build version
-    
+
+                console.log("Initializing WebSocket connection to:", this.host, this.port);
+
             this.client = new GameClient(this.host, this.port);
             
             //>>excludeStart("prodHost", pragmas.prodHost);
             var config = this.app.config.local || this.app.config.dev;
             if(config) {
+                console.log("Using configuration:", config);
                 this.client.connect(config.dispatcher); // false if the client connects directly to a game server
                 connecting = true;
             }
@@ -726,11 +729,13 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             
             //>>includeStart("prodHost", pragmas.prodHost);
             if(!connecting) {
+                console.log("Connecting directly to the game server.");
                 this.client.connect(true); // always use the dispatcher in production
             }
             //>>includeEnd("prodHost");
             
             this.client.onDispatched(function(host, port) {
+                console.log("Dispatched to game server:", host, port);
                 log.debug("Dispatched to game server "+host+ ":"+port);
                 
                 self.client.host = host;
@@ -739,12 +744,17 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             });
             
             this.client.onConnected(function() {
+                console.log("WebSocket connection established. Starting client/server handshake.");
                 log.info("Starting client/server handshake");
                 
                 self.player.name = self.username;
                 self.started = true;
             
                 self.sendHello(self.player);
+            });
+
+            this.client.onDisconnected(function(message) {
+                console.error("WebSocket connection disconnected:", message);
             });
         
             this.client.onEntityList(function(list) {

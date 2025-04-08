@@ -1,17 +1,41 @@
 
 var fs = require('fs'),
     Metrics = require('./metrics');
+    express = require('express');
+    path = require('path');
 
 
 function main(config) {
     var ws = require("./ws"),
         WorldServer = require("./worldserver"),
-        Log = require('log'),
+        Log = require('./logger'),
         _ = require('underscore'),
+        app = express(),
         server = new ws.MultiVersionWebsocketServer(config.port),
         metrics = config.metrics_enabled ? new Metrics(config) : null;
         worlds = [],
-        lastTotalPlayers = 0,
+        lastTotalPlayers = 0;
+
+        app.use((req, res, next) => {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+            res.setHeader('Access-Control-Allow-Credentials', true);
+            next();
+        });
+        
+        app.use(express.static('client-build'));
+        app.use('/shared', express.static(path.join(__dirname, '../../shared')));
+
+        app.listen(8080, function() {
+            console.log('Front-end is running on http://localhost:8080');
+        });
+
+        app.use((req, res) => {
+            res.status(404).send('Not Found');
+        });
+
+
         checkPopulationInterval = setInterval(function() {
             if(metrics && metrics.isReady) {
                 metrics.getTotalPlayers(function(totalPlayers) {
@@ -32,6 +56,8 @@ function main(config) {
             log = new Log(Log.DEBUG); break;
         case "info":
             log = new Log(Log.INFO); break;
+        default:
+            log = new Log(Log.INFO);    
     };
     
     log.info("Starting BrowserQuest game server...");
