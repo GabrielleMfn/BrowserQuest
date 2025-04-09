@@ -1,0 +1,1 @@
+2025/04/09 11:49:05 [error] 3380#13440: *1 CreateFile() "C:\Users\vacod\Downloads\nginx-1.27.4\nginx-1.27.4/html/favicon.ico" failed (2: Le fichier spécifié est introuvable), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
