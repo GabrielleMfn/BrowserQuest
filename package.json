@@ -2,15 +2,19 @@
     "name": "browserquest",
     "version": "0.0.1",
     "private": false,
+    "scripts": {
+      "start": "node server/js/main.js"
+    },
     "dependencies": {
-        "bison": "latest",
-        "cors": "^2.8.5",
-        "express": "^5.1.0",
-        "log": "latest",
-        "memcache": "latest",
-        "sanitizer": "latest",
-        "underscore": "latest",
-        "websocket": "latest",
-        "ws": "latest"
+      "bison": "latest",
+      "cors": "^2.8.5",
+      "express": "^5.1.0",
+      "log": "latest",
+      "memcache": "latest",
+      "sanitizer": "latest",
+      "underscore": "latest",
+      "websocket": "latest",
+      "ws": "latest"
     }
-}
+  }
+  

@@ -2,7 +2,7 @@
 FROM node:18
 
 # Créer un répertoire dans le conteneur
-WORKDIR /app
+WORKDIR /server/js
 
 # Copier les fichiers
 COPY package*.json ./
