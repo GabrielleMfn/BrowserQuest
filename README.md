@@ -26,6 +26,20 @@ PS : Si plus tard vous voulez remettre la permission d'avant :
 L'application est initialisée. Enjoy !
 
 
+Partie Docker:
+
+* Tirez l'image Docker du jeu :
+    * docker pull amineo2005/browserquest
+* Lancez le jeu :
+    * docker run -p 8080:8080 amineo2005/browserquest
+* Vous pouvez accéder au jeu sur http://localhost:8080
+
+
+
+
+
+
+
 License
 -------
 
