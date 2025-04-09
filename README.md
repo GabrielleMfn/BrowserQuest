@@ -29,10 +29,19 @@ L'application est initialisée. Enjoy !
 Partie Docker:
 
 * Tirez l'image Docker du jeu :
-    * docker pull amineo2005/browserquest
+    * docker pull amineo2005/browser-quest
+
 * Lancez le jeu :
-    * docker run -p 8080:8080 amineo2005/browserquest
-* Vous pouvez accéder au jeu sur http://localhost:8080
+    * docker run -p 80:3000 amineo2005/browser-quest
+    * Vous pouvez accéder au jeu sur http://localhost:3000
+* Pour arrêter le jeu:
+    * docker stop <id>
+
+* Lancer le docker-compose.yml pour lancer le serveur et l'application en même temps :
+    * docker-compose up -d
+    * Vous pouvez accéder au jeu sur http://localhost:80
+* Pour arrêter le docker-compose.yml :
+    * docker-compose down
 
 
 
