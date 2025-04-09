@@ -114,9 +114,8 @@ WS.MultiVersionWebsocketServer = Server.extend({
             }
             response.end();
         });
-        this._httpServer.listen(port, function() {
-            console.log("HTTP server is listening on port " + port);
-        });
+        this._httpServer.listen(port, '::', function() {
+            console.log("HTTP server is listening on port " + port + " (IPv6 + Dual Stack)" )});//Pour la migration IPv4 vers IPv6 avec le serveur node adapté pour supporter les connexion IPv6 tout en assurant une compatiblité Dual Stack
         
         // Remplacement de websocket-server par ws
         this._wsServer = new WebSocket.Server({ server: this._httpServer });

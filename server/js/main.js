@@ -27,8 +27,8 @@ function main(config) {
         app.use(express.static('client-build'));
         app.use('/shared', express.static(path.join(__dirname, '../../shared')));
 
-        app.listen(8080, function() {
-            console.log('Front-end is running on http://localhost:8080');
+        app.listen(8080, '::', function() {
+            console.log('Front-end is running on http://[::1]:8080'); //Pour la migration IPv4 vers IPv6 avec le serveur node adapté pour supporter les connexion IPv6 tout en assurant une compatiblité Dual Stack
         });
 
         app.use((req, res) => {
