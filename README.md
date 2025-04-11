@@ -22,7 +22,36 @@ PS : Si plus tard vous voulez remettre la permission d'avant : \* Exécutez Set-
 
 L'application est initialisée. Enjoy !
 
-Partie Docker:
+# Partie Docker:
+
+/!\ Pour la partie Docker vous pouvez rencontrer des difficultés car on a adapté le projet en incluant l'étape 2 : Migration IPv4 vers IPv6 Adapter le serveur Node.js pour supporter les connexions IPv6, en assurant une compatibilité Dual Stack.
+
+Pour eviter que l'app ne s'affiche pas veillez ouvrir le fichier daemon.json qui se trouve:
+
+* Sur Windows :
+  * C:\Utilisateur\votreUtilisateur\ .docker\daemon.json
+  * C:\ProgramData\Docker\config\daemon.json
+
+* Sur Mac : 
+* Verifier/Acceder au fichier depuis le docker desktop -> settings -> docker engine
+
+Le fichier ressemble à ça :
+{
+ "builder": {
+  "gc": {
+   "defaultKeepStorage": "20GB",
+   "enabled": true
+  }
+ },
+ "experimental": false,
+
+ // ajouter ceci :
+ "ipv6": true,
+ "fixed-cidr-v6": "2001:db8:1::/64"
+}
+
+Enregistrer et Relancer Docker 
+Problème résolu ! vous pouver suivre les consignes si dessous 
 
 - Tirez l'image Docker du jeu :
 
@@ -42,6 +71,13 @@ Partie Docker:
 
   - docker-compose down
 
+# Load Balancer/Nginx
+
+/!\ Vous pouvez rencontrer des problème avec Nginx avec Windows :
+La config qui se trouve dans le dossier nginx/conf -> nginx.conf mettez la dans le fichier nginx.conf où vous avez télécharger Nginx. 
+Oubliez pas de changer la route au niveau de location : /Users/VotreUser/BrowserQuest/client;
+
+
 - Une fois avoir lancer le jeu sur un terminal, ouvrir un deuxieme terminal, et entrer :
 
   - cd .\server\js
@@ -52,7 +88,7 @@ Partie Docker:
   - cd .\server\js
   - node main.js config_local_2.json
 
-- Ouvrirn un quatriéme terminal, dans la racine et entrer cette commande :
+- Ouvrir un quatrième terminal, dans la racine et entrer cette commande :
   - start nginx.exe
 
 ## License
