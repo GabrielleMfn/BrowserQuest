@@ -50,6 +50,7 @@ Partie Docker:
 
 - Ouvrir un premier terminal, et entrer la commande
 
+
 - Une fois avoir lancer le jeu sur un terminal, ouvrir un deuxieme terminal, et entrer :
 
   - cd .\server\js
