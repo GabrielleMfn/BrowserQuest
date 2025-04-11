@@ -22,6 +22,8 @@ PS : Si plus tard vous voulez remettre la permission d'avant : \* Exécutez Set-
 
 L'application est initialisée. Enjoy !
 
+## Docker:
+
 Partie Docker:
 
 - Tirez l'image Docker du jeu :
@@ -33,7 +35,9 @@ Partie Docker:
   - Vous pouvez accéder au jeu sur http://localhost:3000
 - Pour arrêter le jeu:
 
-  - docker stop <id>
+  - docker stop 
+
+
 
 - Lancer le docker-compose.yml pour lancer le serveur et l'application en même temps :
   - docker-compose up -d
@@ -41,6 +45,10 @@ Partie Docker:
 - Pour arrêter le docker-compose.yml :
 
   - docker-compose down
+
+## Nginx:
+
+- Ouvrir un premier terminal, et entrer la commande
 
 - Une fois avoir lancer le jeu sur un terminal, ouvrir un deuxieme terminal, et entrer :
 
