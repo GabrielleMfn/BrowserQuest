@@ -37,18 +37,28 @@ Pour eviter que l'app ne s'affiche pas veillez ouvrir le fichier daemon.json qui
 * Verifier/Acceder au fichier depuis le docker desktop -> settings -> docker engine
 
 Le fichier ressemble à ça :
+
 {
  "builder": {
+ 
   "gc": {
+  
    "defaultKeepStorage": "20GB",
+   
    "enabled": true
+   
   }
+  
  },
+ 
  "experimental": false,
 
  // ajouter ceci :
+ 
  "ipv6": true,
+ 
  "fixed-cidr-v6": "2001:db8:1::/64"
+ 
 }
 
 Enregistrer et Relancer Docker 
@@ -69,7 +79,7 @@ Problème résolu ! vous pouver suivre les consignes si dessous
 
 - Lancer le docker-compose.yml pour lancer le serveur et l'application en même temps :
   - docker-compose up -d
-  - Vous pouvez accéder au jeu sur http://localhost:80
+  - Vous pouvez accéder au jeu sur http://localhost:8080
 - Pour arrêter le docker-compose.yml :
 
   - docker-compose down
