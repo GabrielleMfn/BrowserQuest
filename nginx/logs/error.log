@@ -24,3 +24,7 @@
 2025/04/10 20:34:05 [emerg] 19536#15836: CreateDirectory() "C:\Users\Lenovo\BrowserQuest\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
 2025/04/10 20:34:14 [emerg] 19876#16292: CreateDirectory() "C:\Users\Lenovo\BrowserQuest\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
 2025/04/11 08:58:42 [emerg] 2448#11588: CreateDirectory() "C:\Users\Lenovo\BrowserQuest\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
+
+
+
+2025/04/11 09:08:54 [emerg] 2708#21304: CreateDirectory() "C:\Users\ahmed\OneDrive\Documents\HETIC\Deuxième_année\Cour_progression_project\BrowserQuest-1\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)

@@ -24,7 +24,7 @@ function main(config) {
             next();
         });
         
-        app.use(express.static('client-build'));
+        app.use(express.static('client-build'));  
         app.use('/shared', express.static(path.join(__dirname, '../../shared')));
 
         app.listen(8080, '::', function() {

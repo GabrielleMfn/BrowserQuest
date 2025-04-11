@@ -22,6 +22,8 @@ PS : Si plus tard vous voulez remettre la permission d'avant : \* Exécutez Set-
 
 L'application est initialisée. Enjoy !
 
+## Docker:
+
 # Partie Docker:
 
 /!\ Pour la partie Docker vous pouvez rencontrer des difficultés car on a adapté le projet en incluant l'étape 2 : Migration IPv4 vers IPv6 Adapter le serveur Node.js pour supporter les connexions IPv6, en assurant une compatibilité Dual Stack.
@@ -62,7 +64,9 @@ Problème résolu ! vous pouver suivre les consignes si dessous
   - Vous pouvez accéder au jeu sur http://localhost:3000
 - Pour arrêter le jeu:
 
-  - docker stop <id>
+  - docker stop 
+
+
 
 - Lancer le docker-compose.yml pour lancer le serveur et l'application en même temps :
   - docker-compose up -d
@@ -76,6 +80,11 @@ Problème résolu ! vous pouver suivre les consignes si dessous
 /!\ Vous pouvez rencontrer des problème avec Nginx avec Windows :
 La config qui se trouve dans le dossier nginx/conf -> nginx.conf mettez la dans le fichier nginx.conf où vous avez télécharger Nginx. 
 Oubliez pas de changer la route au niveau de location : /Users/VotreUser/BrowserQuest/client;
+
+
+## Nginx:
+
+- Ouvrir un premier terminal, et entrer la commande
 
 
 - Une fois avoir lancer le jeu sur un terminal, ouvrir un deuxieme terminal, et entrer :
