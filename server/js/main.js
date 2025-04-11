@@ -1,9 +1,8 @@
-
+console.log("debug.js est bien chargé !");
 var fs = require('fs'),
     Metrics = require('./metrics');
     express = require('express');
     path = require('path');
-
 
 function main(config) {
     var ws = require("./ws"),
@@ -16,6 +15,53 @@ function main(config) {
         worlds = [],
         lastTotalPlayers = 0;
 
+        // Stockage en mémoire pour les tentatives par IP
+    const attemptsByIP = {};
+    const maxAttemptsPerMinute = 10; // Limite de 10 tentatives par minute
+    const blockDuration = 10 * 60 * 1000; // Bloquer pendant 10 minutes
+
+    // Middleware pour limiter les tentatives par IP
+    function rateLimiter(req, res, next) {
+        const ipAddr = req.connection.remoteAddress;
+        const now = Date.now();
+
+        if (!attemptsByIP[ipAddr]) {
+            attemptsByIP[ipAddr] = { attempts: [], blockedUntil: 0 };
+        }
+
+        const ipData = attemptsByIP[ipAddr];
+
+        // Vérifiez si l'IP est bloquée
+        if (ipData.blockedUntil > now) {
+            const retrySecs = Math.round((ipData.blockedUntil - now) / 1000);
+            res.set('Retry-After', String(retrySecs));
+            return res.status(429).send('Too Many Requests');
+        }
+
+        // Nettoyez les anciennes tentatives
+        ipData.attempts = ipData.attempts.filter((timestamp) => now - timestamp < 60 * 1000); // 1 minute
+
+        // Vérifiez les limites
+        if (ipData.attempts.length >= maxAttemptsPerMinute) {
+            ipData.blockedUntil = now + blockDuration;
+            const retrySecs = Math.round(blockDuration / 1000);
+            res.set('Retry-After', String(retrySecs));
+            return res.status(429).send('Too Many Requests');
+        }
+
+        // Ajoutez une tentative
+        ipData.attempts.push(now);
+
+        next();
+    }
+
+    // Ajout du middleware de limitation sur une route spécifique
+    app.post('/start', rateLimiter, (req, res) => {
+        const playerName = req.body.name; // Récupère le prénom du joueur
+        if (!playerName || playerName.trim() === '') {
+            return res.status(400).send('Player name is required.');
+        }});
+
         app.use((req, res, next) => {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -24,11 +70,11 @@ function main(config) {
             next();
         });
         
-        app.use(express.static('client-build'));  
+        app.use(express.static('client-build'));
         app.use('/shared', express.static(path.join(__dirname, '../../shared')));
 
         app.listen(8080, '::', function() {
-            console.log('Front-end is running on http://localhost:8080'); //Pour la migration IPv4 vers IPv6 avec le serveur node adapté pour supporter les connexion IPv6 tout en assurant une compatiblité Dual Stack
+            console.log('Front-end is running on http://localhost:8080'); 
         });
 
         app.use((req, res) => {
@@ -63,7 +109,7 @@ function main(config) {
     log.info("Starting BrowserQuest game server...");
     
     server.onConnect(function(connection) {
-        var world, // the one in which the player will be spawned
+        var world,
             connect = function() {
                 if(world) {
                     world.connect_callback(new Player(connection, world));
@@ -72,13 +118,13 @@ function main(config) {
         
         if(metrics) {
             metrics.getOpenWorldCount(function(open_world_count) {
-                // choose the least populated world among open worlds
+
                 world = _.min(_.first(worlds, open_world_count), function(w) { return w.playerCount; });
                 connect();
             });
         }
         else {
-            // simply fill each world sequentially until they are full
+
             world = _.detect(worlds, function(world) {
                 return world.playerCount < config.nb_players_per_world;
             });
@@ -116,7 +162,7 @@ function main(config) {
     
     if(config.metrics_enabled) {
         metrics.ready(function() {
-            onPopulationChange(); // initialize all counters to 0 when the server starts
+            onPopulationChange();
         });
     }
     
